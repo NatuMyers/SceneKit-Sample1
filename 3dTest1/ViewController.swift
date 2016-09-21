@@ -14,10 +14,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // 
+
         
-        let sceneView = SCNView(frame: self.view.frame)
-        self.view.addSubview(sceneView)
+        /* 
+         
+         In the viewDidLoad method, we create a SCNView object,
+         passing in the frame of the view controller's view.
+         We assign the SCNView instance to a constant, sceneView,
+         and add it as a subview of the view controller's view.
+         
+        */
+        
+        let sceneView = SCNView(frame: self.view.frame) //SCNView object passed to a sceneView Constant
+        
+        
+        self.view.addSubview(sceneView) //this constant is added as a SCNview constant
 
         let scene = SCNScene()
         sceneView.scene = scene
