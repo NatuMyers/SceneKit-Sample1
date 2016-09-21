@@ -1,6 +1,6 @@
 # SceneKit-Sample1
 
-
+this readme scraped from: https://medium.com/@0xben/using-github-with-xcode-6-8208b92c7a60#.fdho7ql55
 
 # Using GitHub with Xcode 6
 
