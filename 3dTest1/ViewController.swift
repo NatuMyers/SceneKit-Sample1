@@ -72,8 +72,21 @@ class ViewController: UIViewController {
         planeNode.eulerAngles = SCNVector3(x: GLKMathDegreesToRadians(-90), y: 0, z: 0)
         planeNode.position = SCNVector3(x: 0, y: -0.5, z: 0)
         
-        // Euler angels:
+        // By changing the plane node's eulerAngles property, you rotate the plane backwards 90 degrees along the x axis. We need to do this, because planes are created vertically by default. In SceneKit, rotation angles are calculated in radians rather than degrees, but these values can be easily converted using the GLKMathDegreesToRadians(_:) and GLKMathsRadiansToDegrees(_:) functions. GLK stands for GLKit, Apple's OpenGL framework.
+              
+        // plane material
         
+        let redMaterial = SCNMaterial()
+        redMaterial.diffuse.contents = UIColor.redColor()
+        cubeGeometry.materials = [redMaterial]
+        
+        let greenMaterial = SCNMaterial()
+        greenMaterial.diffuse.contents = UIColor.greenColor()
+        planeGeometry.materials = [greenMaterial]
+        
+        // For each SCNMaterial object, you assign its diffuse contents a UIColor value. The diffuse property of a material determines how it appears when under direct light. Note that the value assigned does not have to be a UIColor object. There are many other acceptable object types to assign to this property, such as UIImage, CALayer, and even a SpriteKit texture (SKTexture).
+        
+
         
         // Finsh up scene
         
