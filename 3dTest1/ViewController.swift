@@ -49,8 +49,10 @@ class ViewController: UIViewController {
         
         // light
         
+        /* Normally, but now we want a spot light to generate a shadow
+         
         let light = SCNLight()
-        
+         
         light.type = SCNLightTypeOmni // SCNLightTypeOmni. This light type distributes light evenly in all directions from a point in 3D space. You can think of this light type as a regular light bulb.
         
         let lightNode = SCNNode()
@@ -58,6 +60,26 @@ class ViewController: UIViewController {
         lightNode.light = light
         
         lightNode.position = SCNVector3(x: 1.5, y: 1.5, z: 1.5)
+        
+         */
+        
+        // spot light
+        
+        let spotLight = SCNLight()
+        spotLight.type = SCNLightTypeSpot
+        spotLight.spotInnerAngle = 30.0
+        spotLight.spotOuterAngle = 80.0
+        spotLight.castsShadow = true
+        let spotLightNode = SCNNode()
+        spotLightNode.light = spotLight
+        spotLightNode.position = SCNVector3(x: 1.5, y: 1.5, z: 1.5)
+        
+        // ambientlight
+        
+        let ambientLight = SCNLight()
+        ambientLight.type = SCNLightTypeAmbient
+        ambientLight.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
+        cameraNode.light = ambientLight
         
         // shapes we made
         
@@ -86,11 +108,9 @@ class ViewController: UIViewController {
         
         // For each SCNMaterial object, you assign its diffuse contents a UIColor value. The diffuse property of a material determines how it appears when under direct light. Note that the value assigned does not have to be a UIColor object. There are many other acceptable object types to assign to this property, such as UIImage, CALayer, and even a SpriteKit texture (SKTexture).
         
-
-        
         // Finsh up scene
         
-        scene.rootNode.addChildNode(lightNode)
+        scene.rootNode.addChildNode(spotLightNode)
         
         scene.rootNode.addChildNode(cameraNode)
         
@@ -105,6 +125,10 @@ class ViewController: UIViewController {
         constraint.gimbalLockEnabled = true
         
         cameraNode.constraints = [constraint]
+        
+        spotLightNode.constraints = [constraint]
+        
+        // To create the spot light, you first set the light's type to SCNLightTypeSpot. You then specify the spot light's inner and outer angles in degrees. The default values are 0 and 45 respectively. The inner angle determines how much area the light covers in direct light while the outer angle decides how much area is partially lit. The difference between these angles will become clear once you see the resulting scene. You then explicitly tell the light to cast shadows and also add the same SCNLookAtConstraint that you created for your camera earlier.
     
     }
 
