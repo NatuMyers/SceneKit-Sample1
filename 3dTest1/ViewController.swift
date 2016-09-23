@@ -4,9 +4,10 @@
 //
 //  Created by NatuMyers on 2016-09-21.
 //  Copyright © 2016 NatuMyers. All rights reserved.
-//
+//  https://code.tutsplus.com/tutorials/an-introduction-to-scenekit-fundamentals--cms-23847
 
 import UIKit
+
 import SceneKit
 
 class ViewController: UIViewController {
@@ -25,7 +26,6 @@ class ViewController: UIViewController {
          and add it as a subview of the view controller's view.
          
         */
-        
         
         // scene
     
@@ -59,11 +59,21 @@ class ViewController: UIViewController {
         
         lightNode.position = SCNVector3(x: 1.5, y: 1.5, z: 1.5)
         
-        // shape we made
+        // shapes we made
         
+        // cube
         let cubeGeometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0.0)
-        
         let cubeNode = SCNNode(geometry: cubeGeometry)
+        
+        //plane
+        
+        let planeGeometry = SCNPlane(width: 50.0, height: 50.0)
+        let planeNode = SCNNode(geometry: planeGeometry)
+        planeNode.eulerAngles = SCNVector3(x: GLKMathDegreesToRadians(-90), y: 0, z: 0)
+        planeNode.position = SCNVector3(x: 0, y: -0.5, z: 0)
+        
+        // Euler angels:
+        
         
         // Finsh up scene
         
@@ -72,6 +82,8 @@ class ViewController: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
         
         scene.rootNode.addChildNode(cubeNode)
+        
+        scene.rootNode.addChildNode(planeNode)
         
         // Add camera constraints
         
